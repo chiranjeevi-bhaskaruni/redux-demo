@@ -1,6 +1,10 @@
 const redux = require('redux');
+const reduxLogger = require('redux-logger');
+
 const createStore = redux.createStore
 const combineReducers = redux.combineReducers
+const applyMiddleware = redux.applyMiddleware
+const logger = reduxLogger.createLogger();
 
 console.log('Redux Demo');
 
@@ -81,7 +85,7 @@ const secondReducer = (state = secondInitialData, action) => {
 // store.dispatch(AddAction);
 
 const rootReducer = combineReducers( {firstReducer, secondReducer});
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 console.log(store.getState());
 const unsubscribe = store.subscribe(() => console.log('State Changes', store.getState()));
 store.dispatch(FirstAction);
