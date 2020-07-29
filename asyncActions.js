@@ -69,7 +69,7 @@ const fetchUsers = () => {
         })
         .catch(error => {
             // set error msg
-            dispatch(fetchUsersFailure(error));
+            dispatch(fetchUsersFailure(error.message));
         })
     }
 }
